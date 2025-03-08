@@ -319,6 +319,13 @@ const handleSubmit = async (e) => {
                 Submit
               </Button>
 
+              {/* <Button
+                onClick={() => window.print()}
+                className="mt-3 w-100 btn-success rounded-3 p-2 fw-semibold shadow-sm"
+              >
+                Print
+              </Button> */}
+
               <Button
                 onClick={handleBack}
                 className="mt-3 w-100 btn-secondary rounded-3 p-2 fw-semibold shadow-sm"
