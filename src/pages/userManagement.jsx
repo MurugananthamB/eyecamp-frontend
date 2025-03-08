@@ -135,8 +135,8 @@ const handleStatusToggle = (userId, currentStatus) => {
           <Table striped bordered hover responsive className="text-center">
             <thead className="table-danger">
               <tr>
-                <th>Employee ID</th>
                 <th>Name</th>
+                <th>Employee ID</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
@@ -144,8 +144,9 @@ const handleStatusToggle = (userId, currentStatus) => {
             <tbody>
               {filteredUsers.map((user) => (
                 <tr key={user._id}>
-                  <td>{user.employeeId}</td>
                   <td>{user.firstName}</td>
+                  <td>{user.employeeId}</td>
+
                   <td
                     className={
                       user.status === "active" ? "text-success" : "text-danger"
