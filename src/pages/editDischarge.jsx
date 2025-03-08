@@ -28,44 +28,56 @@ const EditDischarge = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  console.log("Form submitted"); // ✅ Debugging Check
+
   setIsSubmitting(true);
   setErrorMessage("");
   setSuccessMessage("");
 
   // Get current date and time
   const now = new Date();
-  const currentDate = now.toISOString().split("T")[0]; // YYYY-MM-DD format
-  const currentTime = now.toLocaleTimeString([], { hour12: true }); // HH:MM:SS format
-  const registrationDateTime = `${currentDate} ${currentTime}`; // Combine date and time
+  const currentDate = now.toISOString().split("T")[0];
+  const currentTime = now.toLocaleTimeString([], { hour12: true });
+  const registrationDateTime = `${currentDate} ${currentTime}`;
 
   try {
-    // Include registrationDateTime in formData
-    const updatedFormData = {
-      ...formData,
-      registrationDateTime: registrationDateTime,
-    };
+    const updatedFormData = { ...formData, registrationDateTime };
+
+    console.log("Sending data:", updatedFormData); // ✅ Debug API request
 
     const response = await api.post("/api/patients", updatedFormData);
 
-    if (!response.ok) {
+    console.log("Response received:", response.status); // ✅ Debug response status
+
+    if (response.status === 201) {
+      setTimeout(
+        () => window.alert("Patient Data added Successfully! ✅"),
+        100
+      ); // ✅ Alert Fix
+      setTimeout(() => navigate("/dashboard"), 500);
+
+      setFormData({
+        dateOfDischarge: "",
+        finalDiagnosis: "",
+        medication: [],
+        others: "",
+        firstVisit: "",
+        secondVisit: "",
+        followPlace: "",
+        referredBy: "",
+      });
+    } else {
       throw new Error("Failed to submit data. Please try again.");
     }
-
-    const data = await response.json();
-    setSuccessMessage("Details submitted successfully!");
-    console.log("Response Data:", data);
-
-    // Optionally clear the form
-    setFormData({});
-
-    // Redirect after a short delay
-    setTimeout(() => navigate("/dashboard"), 2000);
   } catch (error) {
+    console.error("Error:", error.message);
     setErrorMessage(error.message);
   } finally {
     setIsSubmitting(false);
   }
 };
+
+
 
 
   const handleLogout = () => {
