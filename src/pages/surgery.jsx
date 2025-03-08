@@ -66,8 +66,71 @@ const Surgery = () => {
         <Container>
           <h3 className="mb-4 text-center fw-bold">Surgery Booking</h3>
           <Form onSubmit={handleNext}>
-            {/* Registration Datetime */}
-            <Form.Group as={Row} className="mb-3">
+
+            <Row className="mb-3">
+              <Col md={12}>
+                <Form.Group>
+                  <Form.Label className="fw-semibold text-dark">
+                    Diagnosis
+                  </Form.Label>
+                  <Form.Select
+                    name="diagnosis"
+                    value={formData.diagnosis || ""}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Diagnosis</option>
+                    <option value="CORNEAL_OPACITY">CORNEAL OPACITY</option>
+                    <option value="GLAUCOMA">GLAUCOMA</option>
+                    <option value="LEFT_EYE_APHAKIA">LEFT EYE APHAKIA</option>
+                    <option value="LEFT_EYE_HYPERMATURE_CATARACT">
+                      LEFT EYE HYPERMATURE CATARACT
+                    </option>
+                    <option value="LEFT_EYE_IMC">LEFT EYE IMC</option>
+                    <option value="LEFT_EYE_IMMATURE_CATARACT">
+                      LEFT EYE IMMATURE CATARACT
+                    </option>
+                    <option value="LEFT_EYE_IMMATURE_CATARACT_NUCLEAR_SCLEROSIS">
+                      Left Eye Immature Cataract/Nuclear Sclerosis I/MIN
+                      /Posterior Sub Capsular Cataract
+                    </option>
+                    <option value="LEFT_EYE_MATURE_CATARACT">
+                      LEFT EYE MATURE CATARACT
+                    </option>
+                    <option value="LEFT_EYE_MSC">LEFT EYE MSC</option>
+                    <option value="LEFT_EYE_PCIOL">LEFT EYE PCIOL</option>
+                    <option value="LEFT_EYE_PTERYGIUM">
+                      LEFT EYE PTERYGIUM
+                    </option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="PRESBYOPIA">PRESBYOPIA</option>
+                    <option value="PTERYGIUM">pterygium</option>
+                    <option value="REFRACTIVE_ERROR">REFRACTIVE ERROR</option>
+                    <option value="RIGHT_EYE_APHAKIA">RIGHT EYE APHAKIA</option>
+                    <option value="RIGHT_EYE_HYPERMATURE_CATARACT">
+                      RIGHT EYE HYPERMATURE CATARACT
+                    </option>
+                    <option value="RIGHT_EYE_IMC">RIGHT EYE IMC</option>
+                    <option value="RIGHT_EYE_IMMATURE_CATARACT">
+                      RIGHT EYE IMMATURE CATARACT
+                    </option>
+                    <option value="RIGHT_EYE_IMMATURE_CATARACT_NUCLEAR_SCLEROSIS">
+                      Right Eye Immature Cataract/Nuclear Sclerosis III/
+                      Posterior Sub Capsular Cataract
+                    </option>
+                    <option value="RIGHT_EYE_MATURE_CATARACT">
+                      RIGHT EYE MATURE CATARACT
+                    </option>
+                    <option value="RIGHT_EYE_MSC">RIGHT EYE MSC</option>
+                    <option value="RIGHT_EYE_PCIOL">RIGHT EYE PCIOL</option>
+                    <option value="RIGHT_EYE_PTERYGIUM">
+                      RIGHT EYE PTERYGIUM
+                    </option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            {/* <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="3">
                 Registration Datetime
               </Form.Label>
@@ -79,7 +142,7 @@ const Surgery = () => {
                   onChange={handleChange}
                 />
               </Col>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* OT In Datetime */}
             <Form.Group as={Row} className="mb-3">
@@ -89,8 +152,8 @@ const Surgery = () => {
               <Col sm="9">
                 <Form.Control
                   type="datetime-local"
-                  name="otDatetime"
-                  value={formData.otDatetime}
+                  name="otDateTime"
+                  value={formData.otDateTime}
                   onChange={handleChange}
                 />
               </Col>
@@ -290,8 +353,7 @@ const Surgery = () => {
               className="mt-3 w-100 btn-secondary rounded-3 p-2 fw-semibold shadow-sm"
             >
               Back
-                      </Button>
-                      
+            </Button>
           </Form>
         </Container>
       </Card>

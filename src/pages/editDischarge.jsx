@@ -1,31 +1,105 @@
 import React, { useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { FormContext } from "./formContext"; // Import FormContext
+import Select from "react-select"; // Import react-select
+import api from "../api";
 
 const EditDischarge = () => {
   const { formData, setFormData } = useContext(FormContext);
   const navigate = useNavigate();
 
+  // 🔹 Fix: Define isSubmitting state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Updated Data:", formData);
-    navigate("/next-page"); // Update the path as needed
+  const handleMedicationChange = (selectedOptions) => {
+    setFormData({
+      ...formData,
+      medication: selectedOptions.map((option) => option.value), // Store as array
+    });
   };
 
-    const handleLogout = () => {
-      setFormData({}); // Clear form data
-      localStorage.clear(); // Clear all items in localStorage
-      navigate("/login"); // Redirect to the login page (or any other page)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setErrorMessage("");
+  setSuccessMessage("");
+
+  // Get current date and time
+  const now = new Date();
+  const currentDate = now.toISOString().split("T")[0]; // YYYY-MM-DD format
+  const currentTime = now.toLocaleTimeString([], { hour12: true }); // HH:MM:SS format
+  const registrationDateTime = `${currentDate} ${currentTime}`; // Combine date and time
+
+  try {
+    // Include registrationDateTime in formData
+    const updatedFormData = {
+      ...formData,
+      registrationDateTime: registrationDateTime,
     };
-  
-    const handleBack = () => {
-      navigate(-1); // Navigate to the previous page
-    };
+
+    const response = await api.post("/api/patients", updatedFormData);
+
+    if (!response.ok) {
+      throw new Error("Failed to submit data. Please try again.");
+    }
+
+    const data = await response.json();
+    setSuccessMessage("Details submitted successfully!");
+    console.log("Response Data:", data);
+
+    // Optionally clear the form
+    setFormData({});
+
+    // Redirect after a short delay
+    setTimeout(() => navigate("/dashboard"), 2000);
+  } catch (error) {
+    setErrorMessage(error.message);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
+  const handleLogout = () => {
+    setFormData({}); // Clear form data
+    localStorage.clear(); // Clear all items in localStorage
+    navigate("/login"); // Redirect to the login page
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
+  // Medication options
+  const medicationOptions = [
+    {
+      value: "QUIN_PD_EYE_DROPS_1HR",
+      label: "QUIN - PD EYE DROPS - 1 Hr (1 WEEK)",
+    },
+    { value: "FLURE_ED_3TIMES_DAY", label: "FLURE E/D - 3 TIMES/DAY" },
+    { value: "MOXAP_DEXA", label: "MOXAP DEXA (MOXIFLOXACIN + DEXAMETHASONE)" },
+    {
+      value: "MOXIFLOXACIN_DEXAMETHASONE",
+      label:
+        "MOXIFLOXACIN 0.5% + DEXAMETHASONE 0.1% EYE DROPS - 10 TIMES (1 WEEK)",
+    },
+    { value: "T_CIFRAN_500MG", label: "T. CIFRAN 500 MG 1-0-1 X 5 DAYS" },
+    { value: "T_PARA_500MG", label: "T. PARA 500 MG - 1-0-1 X 3 DAYS" },
+    { value: "T_RANTAC_150MG", label: "T. RANTAC 150 MG 1-0-1 X 5 DAYS" },
+  ];
+
+  // Convert selected values for react-select
+  const selectedMedications = medicationOptions.filter((option) =>
+    formData.medication?.includes(option.value)
+  );
 
   return (
     <div
@@ -45,7 +119,7 @@ const EditDischarge = () => {
           position: "absolute",
           top: "20px",
           right: "20px",
-          zIndex: 10, // Ensure the button is above other elements
+          zIndex: 10,
         }}
       >
         Logout
@@ -79,35 +153,6 @@ const EditDischarge = () => {
                   </Form.Group>
                 </Col>
               </Row>
-
-              {/* <Row className="mb-3">
-                <Col md={6}>
-                  <Form.Group>
-                    <Form.Label className="fw-semibold">
-                      Vision In Right Eye
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="visionRightEye"
-                      value={formData?.visionRightEye || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={6}>
-                  <Form.Group>
-                    <Form.Label className="fw-semibold">
-                      Vision In Left Eye
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="visionLeftEye"
-                      value={formData?.visionLeftEye || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row> */}
 
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm="3">
@@ -175,35 +220,14 @@ const EditDischarge = () => {
                   Medication
                 </Form.Label>
                 <Col sm="9">
-                  <Form.Select
-                    name="medication"
-                    value={formData.medication}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Medication</option>
-                    <option value="QUIN_PD_EYE_DROPS_1HR">
-                      QUIN - PD EYE DROPS - 1 Hr (1 WEEK)
-                    </option>
-                    <option value="FLURE_ED_3TIMES_DAY">
-                      FLURE E/D - 3 TIMES/DAY
-                    </option>
-                    <option value="MOXAP_DEXA">
-                      MOXAP DEXA (MOXIFLOXACIN + DEXAMETHASONE)
-                    </option>
-                    <option value="MOXIFLOXACIN_DEXAMETHASONE">
-                      MOXIFLOXACIN 0.5% + DEXAMETHASONE 0.1% EYE DROPS - 10
-                      TIMES (1 WEEK)
-                    </option>
-                    <option value="T_CIFRAN_500MG">
-                      T. CIFRAN 500 MG 1-0-1 X 5 DAYS
-                    </option>
-                    <option value="T_PARA_500MG">
-                      T. PARA 500 MG - 1-0-1 X 3 DAYS
-                    </option>
-                    <option value="T_RANTAC_150MG">
-                      T. RANTAC 150 MG 1-0-1 X 5 DAYS
-                    </option>
-                  </Form.Select>
+                  <Select
+                    options={medicationOptions}
+                    isMulti
+                    value={selectedMedications}
+                    onChange={handleMedicationChange}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                  />
                 </Col>
               </Form.Group>
 

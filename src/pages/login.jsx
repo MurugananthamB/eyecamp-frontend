@@ -37,6 +37,8 @@ const Login = () => {
       });
 
       localStorage.setItem("employeeData", JSON.stringify(response.data));
+        localStorage.setItem("isLoggedIn", "true");
+
 
       setSuccess(true);
       setError(null);

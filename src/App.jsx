@@ -7,6 +7,7 @@ import Dashboard from "./pages/dashboard";
 import Surgery from "./pages/surgery";
 import EditDischarge from "./pages/editDischarge";
 import { FormProvider } from "./pages/formContext";
+import ProtectedRoute from "./pages/protectedRoutes";
 
 
 
@@ -15,13 +16,31 @@ function App() {
     <FormProvider>
       <Router>
         <Routes>
+          {/* Public Route: Login */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/usrmgmt" element={<UserManagement />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/surgery" element={<Surgery />} />
-          <Route path="/editdischarge" element={<EditDischarge />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/register"
+            element={<ProtectedRoute element={<Register />} />}
+          />
+          <Route
+            path="/usrmgmt"
+            element={<ProtectedRoute element={<UserManagement />} />}
+          />
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute element={<Dashboard />} />}
+          />
+          <Route
+            path="/surgery"
+            element={<ProtectedRoute element={<Surgery />} />}
+          />
+          <Route
+            path="/editdischarge"
+            element={<ProtectedRoute element={<EditDischarge />} />}
+          />
         </Routes>
       </Router>
     </FormProvider>

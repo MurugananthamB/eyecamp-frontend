@@ -63,7 +63,7 @@ const Dashboard = () => {
             </h2>
             <Form onSubmit={handleNext}>
               <Row className="mb-3">
-                <Col md={4}>
+                <Col md={2}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
                       Title
@@ -82,7 +82,7 @@ const Dashboard = () => {
                     </Form.Select>
                   </Form.Group>
                 </Col>
-                <Col md={8}>
+                <Col md={6}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
                       Patient Name
@@ -96,9 +96,23 @@ const Dashboard = () => {
                     />
                   </Form.Group>
                 </Col>
+                <Col md={4}>
+                  <Form.Group>
+                    <Form.Label className="fw-semibold text-dark">
+                      Patient Mobile
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="mobile"
+                      placeholder="Enter Patient Mobile"
+                      value={formData.mobile || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={12}>
+                <Col md={6}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
                       F/O or C/O
@@ -112,10 +126,7 @@ const Dashboard = () => {
                     />
                   </Form.Group>
                 </Col>
-              </Row>
-
-              <Row className="mb-3">
-                <Col md={6}>
+                <Col md={2}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
                       Age
@@ -129,7 +140,7 @@ const Dashboard = () => {
                     />
                   </Form.Group>
                 </Col>
-                <Col md={6}>
+                <Col md={4}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
                       Gender
@@ -220,7 +231,8 @@ const Dashboard = () => {
                     <Form.Label className="fw-semibold text-dark">
                       District
                     </Form.Label>
-                    <Form.Select
+                    <Form.Control
+                      as="select"
                       name="district"
                       value={formData.district || ""}
                       onChange={handleChange}
@@ -233,9 +245,10 @@ const Dashboard = () => {
                       <option value="THIRUVALLUR">THIRUVALLUR</option>
                       <option value="THIRUVANNAMALAI">THIRUVANNAMALAI</option>
                       <option value="VILLUPURAM">VILLUPURAM</option>
-                    </Form.Select>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
+
                 <Col md={6}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
@@ -243,9 +256,9 @@ const Dashboard = () => {
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      name="other district"
+                      name="otherDistrict"
                       placeholder="Enter District"
-                      value={formData.district || ""}
+                      value={formData.otherDistrict || ""}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -358,71 +371,6 @@ const Dashboard = () => {
                         onChange={handleChange}
                       />
                     </div>
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Row className="mb-3">
-                <Col md={12}>
-                  <Form.Group>
-                    <Form.Label className="fw-semibold text-dark">
-                      Diagnosis
-                    </Form.Label>
-                    <Form.Select
-                      name="diagnosis"
-                      value={formData.diagnosis || ""}
-                      onChange={handleChange}
-                    >
-                      <option value="">Select Diagnosis</option>
-                      <option value="CORNEAL_OPACITY">CORNEAL OPACITY</option>
-                      <option value="GLAUCOMA">GLAUCOMA</option>
-                      <option value="LEFT_EYE_APHAKIA">LEFT EYE APHAKIA</option>
-                      <option value="LEFT_EYE_HYPERMATURE_CATARACT">
-                        LEFT EYE HYPERMATURE CATARACT
-                      </option>
-                      <option value="LEFT_EYE_IMC">LEFT EYE IMC</option>
-                      <option value="LEFT_EYE_IMMATURE_CATARACT">
-                        LEFT EYE IMMATURE CATARACT
-                      </option>
-                      <option value="LEFT_EYE_IMMATURE_CATARACT_NUCLEAR_SCLEROSIS">
-                        Left Eye Immature Cataract/Nuclear Sclerosis I/MIN
-                        /Posterior Sub Capsular Cataract
-                      </option>
-                      <option value="LEFT_EYE_MATURE_CATARACT">
-                        LEFT EYE MATURE CATARACT
-                      </option>
-                      <option value="LEFT_EYE_MSC">LEFT EYE MSC</option>
-                      <option value="LEFT_EYE_PCIOL">LEFT EYE PCIOL</option>
-                      <option value="LEFT_EYE_PTERYGIUM">
-                        LEFT EYE PTERYGIUM
-                      </option>
-                      <option value="NORMAL">NORMAL</option>
-                      <option value="PRESBYOPIA">PRESBYOPIA</option>
-                      <option value="PTERYGIUM">pterygium</option>
-                      <option value="REFRACTIVE_ERROR">REFRACTIVE ERROR</option>
-                      <option value="RIGHT_EYE_APHAKIA">
-                        RIGHT EYE APHAKIA
-                      </option>
-                      <option value="RIGHT_EYE_HYPERMATURE_CATARACT">
-                        RIGHT EYE HYPERMATURE CATARACT
-                      </option>
-                      <option value="RIGHT_EYE_IMC">RIGHT EYE IMC</option>
-                      <option value="RIGHT_EYE_IMMATURE_CATARACT">
-                        RIGHT EYE IMMATURE CATARACT
-                      </option>
-                      <option value="RIGHT_EYE_IMMATURE_CATARACT_NUCLEAR_SCLEROSIS">
-                        Right Eye Immature Cataract/Nuclear Sclerosis III/
-                        Posterior Sub Capsular Cataract
-                      </option>
-                      <option value="RIGHT_EYE_MATURE_CATARACT">
-                        RIGHT EYE MATURE CATARACT
-                      </option>
-                      <option value="RIGHT_EYE_MSC">RIGHT EYE MSC</option>
-                      <option value="RIGHT_EYE_PCIOL">RIGHT EYE PCIOL</option>
-                      <option value="RIGHT_EYE_PTERYGIUM">
-                        RIGHT EYE PTERYGIUM
-                      </option>
-                    </Form.Select>
                   </Form.Group>
                 </Col>
               </Row>
