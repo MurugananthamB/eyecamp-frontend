@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FormContext } from "./formContext"; // Import FormContext
 import Select from "react-select"; // Import react-select
+import { FaRedo, FaSignOutAlt } from "react-icons/fa";
 import api from "../api";
 
 const EditDischarge = () => {
@@ -79,14 +80,18 @@ const handleSubmit = async (e) => {
   }
 };
 
-  const handleLogout = () => {
-    setFormData({}); // Clear form data
-    localStorage.clear(); // Clear all items in localStorage
-    navigate("/login"); // Redirect to the login page
-  };
+ const handleLogout = () => {
+   setFormData({}); // Clear form data
+   localStorage.clear(); // Clear all items in localStorage
+   navigate("/login"); // Redirect to the login page (or any other page)
+ };
 
   const handleBack = () => {
     navigate(-1); // Navigate to the previous page
+  };
+
+  const handleReprint = () => {
+    navigate("/reprintCard"); // Navigate to reprint card page
   };
 
   // Medication options
@@ -125,7 +130,7 @@ const handleSubmit = async (e) => {
       <Button
         variant="secondary"
         onClick={handleLogout}
-        className="btn-warning rounded-3 p-2 fw-semibold shadow-sm"
+        className="btn-warning rounded-3 p-2 fw-semibold shadow-sm d-flex align-items-center"
         style={{
           position: "absolute",
           top: "20px",
@@ -133,7 +138,21 @@ const handleSubmit = async (e) => {
           zIndex: 10,
         }}
       >
-        Logout
+        <FaSignOutAlt className="me-2" /> Logout
+      </Button>
+
+      <Button
+        variant="primary"
+        onClick={handleReprint}
+        className="btn-info rounded-3 p-2 fw-semibold shadow-sm d-flex align-items-center"
+        style={{
+          position: "absolute",
+          top: "70px",
+          right: "20px",
+          zIndex: 10,
+        }}
+      >
+        <FaRedo className="me-2" /> Reprint Card
       </Button>
 
       <Container className="d-flex justify-content-center align-items-center">

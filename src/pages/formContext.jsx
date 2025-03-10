@@ -25,11 +25,16 @@ export const FormProvider = ({ children }) => {
     surgeryDate: "",
     surgeryPlace: "Melmaruvathur",
     operatedEye: "",
-    // registrationDatetime: "",
     otDateTime: "",
-    followPlace: "Melmaruvathur",
     ownGlasses: "No",
-    referredBy: "Camp",
+    finalDiagnosis: "",
+    selectedMedications: [],
+    dateOfDischarge: "", // ✅ Added missing field for discharge date
+    others: "", // ✅ Added missing field for additional details
+    firstVisit: "", // ✅ Added missing field for 1st follow-up visit
+    secondVisit: "", // ✅ Added missing field for 2nd follow-up visit
+    followPlace: "Melmaruvathur", // Already present, ensured no duplication
+    referredBy: "Camp", // ✅ Added missing field for referral source
   });
 
   return (
