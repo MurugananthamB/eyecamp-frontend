@@ -54,7 +54,9 @@ const handleSubmit = async (e) => {
         () => window.alert("Patient Data added Successfully! ✅"),
         100
       ); // ✅ Alert Fix
-      setTimeout(() => navigate("/dashboard"), 500);
+      setTimeout(() => {navigate("/dashboard");
+      window.location.reload();  
+    } ,500);
 
       setFormData({
         dateOfDischarge: "",
@@ -76,9 +78,6 @@ const handleSubmit = async (e) => {
     setIsSubmitting(false);
   }
 };
-
-
-
 
   const handleLogout = () => {
     setFormData({}); // Clear form data
