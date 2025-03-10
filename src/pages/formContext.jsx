@@ -13,7 +13,7 @@ export const FormProvider = ({ children }) => {
     age: "",
     mobile: "",
     address: "",
-    district: "",
+    district: "CHENGALPET",
     otherDistrict: "",
     email: "",
     visualRight: "",
@@ -25,10 +25,11 @@ export const FormProvider = ({ children }) => {
     surgeryDate: "",
     surgeryPlace: "Melmaruvathur",
     operatedEye: "",
-    registrationDatetime: "",
+    // registrationDatetime: "",
     otDateTime: "",
     followPlace: "Melmaruvathur",
     ownGlasses: "No",
+    referredBy: "Camp",
   });
 
   return (
