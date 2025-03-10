@@ -77,7 +77,7 @@ const Login = () => {
             {" "}
             {/* More balanced width */}
             <Card className="p-4 shadow-lg rounded-4">
-              <h2 className="text-center text-danger mb-4">Welcome Back!</h2>
+              <h2 className="text-center text-danger mb-4">Welcome !</h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Employee ID</Form.Label>

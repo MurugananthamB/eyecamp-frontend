@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FormContext } from "./formContext"; // Import FormContext
+import { FaRedo, FaSignOutAlt } from "react-icons/fa";
 
 const Dashboard = () => {
   const { formData, setFormData } = useContext(FormContext); // Access form state
@@ -20,8 +21,11 @@ const Dashboard = () => {
       setFormData({}); // Clear form data
       localStorage.clear(); // Clear all items in localStorage
       navigate("/login"); // Redirect to the login page (or any other page)
-    };
-  
+  };
+
+const handleReprint = () => {
+  navigate("/reprintCard"); // Navigate to reprint card page
+};
 
   return (
     <div
@@ -37,15 +41,29 @@ const Dashboard = () => {
       <Button
         variant="secondary"
         onClick={handleLogout}
-        className="btn-warning rounded-3 p-2 fw-semibold shadow-sm"
+        className="btn-warning rounded-3 p-2 fw-semibold shadow-sm d-flex align-items-center"
         style={{
           position: "absolute",
           top: "20px",
           right: "20px",
-          zIndex: 10, // Ensure the button is above other elements
+          zIndex: 10,
         }}
       >
-        Logout
+        <FaSignOutAlt className="me-2" /> Logout
+      </Button>
+
+      <Button
+        variant="primary"
+        onClick={handleReprint}
+        className="btn-info rounded-3 p-2 fw-semibold shadow-sm d-flex align-items-center"
+        style={{
+          position: "absolute",
+          top: "70px",
+          right: "20px",
+          zIndex: 10,
+        }}
+      >
+        <FaRedo className="me-2" /> Reprint Card
       </Button>
 
       <Container className="d-flex justify-content-center align-items-center">
