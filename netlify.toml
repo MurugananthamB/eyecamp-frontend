@@ -1,6 +1,4 @@
-[build]
-  command = "npm install --legacy-peer-deps && npm run build"
-  publish = "dist" # Change to "dist" only if your framework outputs to "dist"
-
-[build.environment]
-  NODE_VERSION = "18.17.1"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
