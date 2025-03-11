@@ -314,6 +314,9 @@ const Surgery = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Surgeon</option>
+                  <option value="Dr Venkatesan">Dr Venkatesan</option>
+                  <option value="Dr Sathish Kumar">Dr Sathish Kumar</option>
+                  <option value="Dr Malarvizhi">Dr Malarvizhi</option>
                   <option value="Dr Arun Kumar">Dr Arun Kumar</option>
                   <option value="Dr Ashwini">Dr Ashwini</option>
                   <option value="Dr Balakrishnan">Dr Balakrishnan</option>
@@ -325,7 +328,7 @@ const Surgery = () => {
                   <option value="Dr Manish">Dr Manish</option>
                   <option value="Dr Nivas">Dr Nivas</option>
                   <option value="Dr Padmaja">Dr Padmaja</option>
-                  <option value="Dr Padmaja*">Dr Padmaja*</option>
+                  <option value="Dr Padmaja">Dr Padmaja*</option>
                   <option value="Dr Padmapriya">Dr Padmapriya</option>
                   <option value="Dr Pavan">Dr Pavan</option>
                   <option value="Dr Prem Anand">Dr Prem Anand</option>
@@ -346,7 +349,7 @@ const Surgery = () => {
                   </option>
                   <option value="Dr Shiva Ranjini">Dr Shiva Ranjini</option>
                   <option value="Dr Shivakumar">Dr Shivakumar</option>
-                  <option value="Dr Shivakumar*">Dr Shivakumar*</option>
+                  <option value="Dr Shivakumar">Dr Shivakumar*</option>
                   <option value="Dr Sree Lakshmi">Dr Sree Lakshmi</option>
                   <option value="Dr Srinivasan">Dr Srinivasan</option>
                   <option value="Dr Srividya">Dr Srividya</option>

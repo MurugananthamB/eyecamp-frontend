@@ -391,6 +391,22 @@ const handleReprint = () => {
                     </div>
                   </Form.Group>
                 </Col>
+
+                {/* Right Column - UHID Number */}
+                <Col md={5}>
+                  <Form.Group controlId="uhid">
+                    <Form.Label className="fw-semibold text-dark">
+                      UHID Number
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="regNo"
+                      value={formData.regNo || ""}
+                      onChange={handleChange}
+                      placeholder="Enter UHID number"
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
 
               <Button
