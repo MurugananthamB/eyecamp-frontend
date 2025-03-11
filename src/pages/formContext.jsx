@@ -5,6 +5,7 @@ export const FormContext = createContext(null);
 
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
+    
     patientName: "",
     fatherOrCO: "",
     attenderName: "",
@@ -35,6 +36,7 @@ export const FormProvider = ({ children }) => {
     secondVisit: "", // ✅ Added missing field for 2nd follow-up visit
     followPlace: "Melmaruvathur", // Already present, ensured no duplication
     referredBy: "Camp", // ✅ Added missing field for referral source
+    regNo: "", // ✅ Added missing field for registration
   });
 
   return (

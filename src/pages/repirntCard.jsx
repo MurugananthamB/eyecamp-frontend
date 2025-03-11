@@ -125,7 +125,7 @@ const PatientTable = () => {
             <tr>
                 <td class="left">
                     <div class="section-title">A. PATIENT'S RECORDS</div><br>
-                    <div class="row"><div class="label">Reg. No.:</div> <div class="value">${
+                    <div class="row"><div class="label">UHID No:</div> <div class="value">${
                       patient.regNo || "N/A"
                     }</div></div>
                     <div class="row"><div class="label">Patient Name:</div> <div class="value">${
@@ -263,7 +263,7 @@ const PatientTable = () => {
             <Table striped bordered hover className="table-sm">
               <thead className="table-dark">
                 <tr>
-                  <th>Reg No.</th>
+                  <th>UHID</th>
                   <th>Title</th>
                   <th>Patient Name</th>
                   <th>Patient Mobile</th>
