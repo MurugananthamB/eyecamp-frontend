@@ -62,10 +62,10 @@ We welcome contributions from the community! 🚀
 - **Containerization:** Docker
 
 ## 📬 Contact
-📧 **Email:** your.email@example.com  
-🔗 **Portfolio:** [YourPortfolio.com](https://mrcreatorportfolio.netlify.app/)  
-🔗 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/murugananthamb/)  
-📌 **GitHub:** [Your GitHub](https://github.com/MurugananthamB)  
+📧 **Email:** murugananthamanand01212@gmail.com  
+🔗 **Portfolio:** [MurugananthamB](https://mrcreatorportfolio.netlify.app/)  
+🔗 **LinkedIn:** [MurugananthamB](https://www.linkedin.com/in/murugananthamb/)  
+📌 **GitHub:** [MurugananthamB](https://github.com/MurugananthamB)  
 
 ---
 
