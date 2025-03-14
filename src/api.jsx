@@ -1,17 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://eyecamp-backend.onrender.com";
-
-// http://192.168.103.158:5000/";
-
-// http://localhost:5000/
-  
-
-// const API_URL = "http://192.168.103.158:5000/" ;
-
-// "http://localhost:5000/"
-
-  // "https://eyecamp-backend.onrender.com";
+const API_URL = import.meta.env.API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
@@ -21,3 +10,4 @@ const api = axios.create({
 });
 
 export default api;
+
