@@ -2,11 +2,11 @@
 
 ![EyeCamp Banner](https://your-image-link-here.com/banner.png)
 
-🚀 **EyeCamp** is a modern, responsive, and scalable web application built with **Vite + React.js + Tailwind CSS**. It provides a seamless user experience for managing and organizing eye care camps efficiently.
+🚀 **EyeCamp** is a modern, responsive, and scalable web application built with **Vite + React.js + Bootstrap CSS**. It provides a seamless user experience for managing and organizing eye care camps efficiently.
 
 ## 🌟 Features
 - 🏥 **Comprehensive UI** for managing patient records and camp registrations
-- 🎨 **Sleek & Responsive Design** using Tailwind CSS
+- 🎨 **Sleek & Responsive Design** using Bootstrap CSS
 - 🔐 **Secure** authentication with JWT
 - ⚡ **Fast and Lightweight** with Vite
 - 📊 **Dynamic dashboards & reports** for easy data visualization
@@ -54,7 +54,7 @@ We welcome contributions from the community! 🚀
 6. **Open a Pull Request**
 
 ## 🛠 Tech Stack
-- **Frontend:** Vite + React.js + Tailwind CSS
+- **Frontend:** Vite + React.js + Bootstrap CSS
 - **Backend:** [EyeCamp Backend](https://eyecamp-backend.onrender.com/)
 - **Database:** MongoDB
 - **Authentication:** JWT
