@@ -1,6 +1,6 @@
 # 👀 EyeCamp - Frontend
 
-![EyeCamp Banner](https://your-image-link-here.com/banner.png)
+![EyeCamp Banner](![alt text](image.png))
 
 🚀 **EyeCamp** is a modern, responsive, and scalable web application built with **Vite + React.js + Bootstrap CSS**. It provides a seamless user experience for managing and organizing eye care camps efficiently.
 
@@ -63,8 +63,8 @@ We welcome contributions from the community! 🚀
 
 ## 📬 Contact
 📧 **Email:** your.email@example.com  
-🔗 **Portfolio:** [YourPortfolio.com](https://your-portfolio-link.com)  
-🔗 **LinkedIn:** [Your LinkedIn](https://linkedin.com/in/yourprofile)  
+🔗 **Portfolio:** [YourPortfolio.com](https://mrcreatorportfolio.netlify.app/)  
+🔗 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/murugananthamb/)  
 📌 **GitHub:** [Your GitHub](https://github.com/MurugananthamB)  
 
 ---
