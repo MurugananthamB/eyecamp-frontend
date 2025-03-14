@@ -64,7 +64,7 @@ We welcome contributions from the community! 🚀
 ## 📬 Contact
 📧 **Email:** murugananthamanand01212@gmail.com  
 🔗 **Portfolio:** [YourPortfolio.com](https://mrcreatorportfolio.netlify.app/)  
-🔗 **LinkedIn:** [Your LinkedIn] (https://www.linkedin.com/in/murugananthamb/)  
+🔗 **LinkedIn:** [Your LinkedIn](https://www.linkedin.com/in/murugananthamb/)  
 📌 **GitHub:** [Your GitHub](https://github.com/MurugananthamB)
 
 ---
