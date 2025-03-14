@@ -3,29 +3,86 @@ import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FormContext } from "./formContext"; // Import FormContext
 import { FaRedo, FaSignOutAlt } from "react-icons/fa";
+import { useState } from "react";
+import api from "../api";
 
 const Dashboard = () => {
   const { formData, setFormData } = useContext(FormContext); // Access form state
   const navigate = useNavigate();
+  const [regNoError, setRegNoError] = useState(""); // Error message state
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Allow only numbers and limit to 10 digits
+    if (name === "mobile" && !/^\d{0,10}$/.test(value)) {
+      return;
+    }
+
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleNext = (e) => {
-    e.preventDefault();
+const handleNext = async (e) => {
+  e.preventDefault();
+
+  const requiredFields = {
+    regNo: "UHID Number",
+    title: "Title",
+    patientName: "Patient Name",
+    fatherOrCO: "Father/Guardian Name",
+    gender: "Gender",
+    age: "Age",
+    mobile: "Mobile Number",
+    address: "Address",
+  };
+
+  // Find empty fields
+  const emptyFields = Object.entries(requiredFields)
+    .filter(([key]) => !formData[key]?.trim())
+    .map(([, value]) => value);
+
+  // Validate Mobile Number
+  if (!/^\d{10}$/.test(formData.mobile)) {
+    emptyFields.push("Mobile Number (must be exactly 10 digits)");
+  }
+
+  if (emptyFields.length > 0) {
+    window.alert(
+      `Please fill out the following fields:\n- ${emptyFields.join("\n- ")}`
+    );
+    return;
+  }
+
+  try {
+    // Check if UHID (regNo) exists in the database
+    const response = await api.get(
+      `/api/patients/checkRegNo/${formData.regNo}`
+    );
+
+    if (response.data.exists) {
+      window.alert("UHID already exists!");
+      return;
+    }
+
+    // If UHID does not exist, navigate to the next page
     navigate("/surgery");
-  };
-
-    const handleLogout = () => {
-      setFormData({}); // Clear form data
-      localStorage.clear(); // Clear all items in localStorage
-      navigate("/login"); // Redirect to the login page (or any other page)
-  };
-
-const handleReprint = () => {
-  navigate("/reprintCard"); // Navigate to reprint card page
+  } catch (error) {
+    console.error("Error checking UHID:", error);
+    window.alert("Failed to check UHID. Please try again.");
+  }
 };
+
+
+
+  const handleLogout = () => {
+    setFormData({}); // Clear form data
+    localStorage.clear(); // Clear all items in localStorage
+    navigate("/login"); // Redirect to the login page (or any other page)
+  };
+
+  const handleReprint = () => {
+    navigate("/reprintCard"); // Navigate to reprint card page
+  };
 
   return (
     <div
@@ -117,7 +174,7 @@ const handleReprint = () => {
                 <Col md={4}>
                   <Form.Group>
                     <Form.Label className="fw-semibold text-dark">
-                      Patient Mobile
+                      Patient Mobile 
                     </Form.Label>
                     <Form.Control
                       type="text"
@@ -125,6 +182,8 @@ const handleReprint = () => {
                       placeholder="Enter Patient Mobile"
                       value={formData.mobile || ""}
                       onChange={handleChange}
+                      pattern="\d{10}"
+                      title="Mobile number must be 10 digits"
                     />
                   </Form.Group>
                 </Col>
@@ -403,6 +462,7 @@ const handleReprint = () => {
                       name="regNo"
                       value={formData.regNo || ""}
                       onChange={handleChange}
+                      // onBlur={checkRegNo}
                       placeholder="Enter UHID number"
                     />
                   </Form.Group>

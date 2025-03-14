@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   Container,
@@ -17,6 +18,8 @@ const PatientTable = () => {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPatients, setFilteredPatients] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -234,6 +237,16 @@ const PatientTable = () => {
     <div className="patient-table-container">
       <Container fluid className="p-4 patient-table-box">
         <h1 className="text-center mb-4">Patient Details</h1>
+
+        <div className="d-flex justify-content-end">
+          <Button
+            className="fw-bold px-4 py-2 rounded-pill shadow-sm"
+            variant="warning"
+            onClick={() => navigate("/dashboard")}
+          >
+            Back
+          </Button>
+        </div>
 
         {/* Search Bar with Clear Button */}
         <InputGroup className="mb-3 w-75 mx-auto">

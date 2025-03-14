@@ -20,12 +20,14 @@ const EditDischarge = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleMedicationChange = (selectedOptions) => {
-    setFormData({
-      ...formData,
-      medication: selectedOptions.map((option) => option.value), // Store as array
-    });
-  };
+const handleMedicationChange = (selectedOptions) => {
+  setFormData({
+    ...formData,
+    medication: selectedOptions.map((option) => option.value), // ✅ Store value instead of label
+  });
+};
+
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -94,28 +96,28 @@ const handleSubmit = async (e) => {
     navigate("/reprintCard"); // Navigate to reprint card page
   };
 
-  // Medication options
-  const medicationOptions = [
-    {
-      value: "QUIN_PD_EYE_DROPS_1HR",
-      label: "QUIN - PD EYE DROPS - 1 Hr (1 WEEK)",
-    },
-    { value: "FLURE_ED_3TIMES_DAY", label: "FLURE E/D - 3 TIMES/DAY" },
-    { value: "MOXAP_DEXA", label: "MOXAP DEXA (MOXIFLOXACIN + DEXAMETHASONE)" },
-    {
-      value: "MOXIFLOXACIN_DEXAMETHASONE",
-      label:
-        "MOXIFLOXACIN 0.5% + DEXAMETHASONE 0.1% EYE DROPS - 10 TIMES (1 WEEK)",
-    },
-    { value: "T_CIFRAN_500MG", label: "T. CIFRAN 500 MG 1-0-1 X 5 DAYS" },
-    { value: "T_PARA_500MG", label: "T. PARA 500 MG - 1-0-1 X 3 DAYS" },
-    { value: "T_RANTAC_150MG", label: "T. RANTAC 150 MG 1-0-1 X 5 DAYS" },
-  ];
+const medicationOptions = [
+  { label: "QUIN - PD EYE DROPS - 1 Hr (1 WEEK)" },
+  { label: "FLURE E/D - 3 TIMES/DAY" },
+  { label: "MOXAP DEXA (MOXIFLOXACIN + DEXAMETHASONE)" },
+  {
+    label:
+      "MOXIFLOXACIN 0.5% + DEXAMETHASONE 0.1% EYE DROPS - 10 TIMES (1 WEEK)",
+  },
+  { label: "T. CIFRAN 500 MG 1-0-1 X 5 DAYS" },
+  { label: "T. PARA 500 MG - 1-0-1 X 3 DAYS" },
+  { label: "T. RANTAC 150 MG 1-0-1 X 5 DAYS" },
+].map((item) => ({
+  value: item.label, // label-ஏ value-ஆக மாற்றி pass செய்கிறோம்
+  label: item.label,
+}));
+
+console.log(medicationOptions);
 
   // Convert selected values for react-select
-  const selectedMedications = medicationOptions.filter((option) =>
-    formData.medication?.includes(option.value)
-  );
+const selectedMedications = medicationOptions.filter(
+  (option) => formData.medication?.includes(option.value) // ✅ Ensure the value is checked
+);
 
   return (
     <div
@@ -184,7 +186,7 @@ const handleSubmit = async (e) => {
                 </Col>
               </Row>
 
-              <Form.Group as={Row} className="mb-3">
+              {/* <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm="3">
                   Final Diagnosis
                 </Form.Label>
@@ -243,7 +245,7 @@ const handleSubmit = async (e) => {
                     </option>
                   </Form.Select>
                 </Col>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm="3">
