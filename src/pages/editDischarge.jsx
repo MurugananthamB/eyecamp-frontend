@@ -186,7 +186,7 @@ const selectedMedications = medicationOptions.filter(
                 </Col>
               </Row>
 
-              <Form.Group as={Row} className="mb-3">
+              {/* <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm="3">
                   Final Diagnosis
                 </Form.Label>
@@ -245,7 +245,7 @@ const selectedMedications = medicationOptions.filter(
                     </option>
                   </Form.Select>
                 </Col>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm="3">
