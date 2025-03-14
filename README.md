@@ -55,7 +55,7 @@ We welcome contributions from the community! 🚀
 
 ## 🛠 Tech Stack
 - **Frontend:** Vite + React.js + Bootstrap CSS
-- **Backend:** [EyeCamp Backend](https://eyecamp-backend.onrender.com/)
+- **Backend:** [EyeCamp Backend](https://github.com/MurugananthamB/eyecamp-backend.git))
 - **Database:** MongoDB
 - **Authentication:** JWT
 - **Deployment:** Netlify
