@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Table,
   Container,
@@ -17,6 +18,8 @@ const PatientTable = () => {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPatients, setFilteredPatients] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -125,7 +128,7 @@ const PatientTable = () => {
             <tr>
                 <td class="left">
                     <div class="section-title">A. PATIENT'S RECORDS</div><br>
-                    <div class="row"><div class="label">Reg. No.:</div> <div class="value">${
+                    <div class="row"><div class="label">UHID No:</div> <div class="value">${
                       patient.regNo || "N/A"
                     }</div></div>
                     <div class="row"><div class="label">Patient Name:</div> <div class="value">${
@@ -235,6 +238,16 @@ const PatientTable = () => {
       <Container fluid className="p-4 patient-table-box">
         <h1 className="text-center mb-4">Patient Details</h1>
 
+        <div className="d-flex justify-content-end">
+          <Button
+            className="fw-bold px-4 py-2 rounded-pill shadow-sm"
+            variant="warning"
+            onClick={() => navigate("/dashboard")}
+          >
+            Back
+          </Button>
+        </div>
+
         {/* Search Bar with Clear Button */}
         <InputGroup className="mb-3 w-75 mx-auto">
           <Form.Control
@@ -263,7 +276,7 @@ const PatientTable = () => {
             <Table striped bordered hover className="table-sm">
               <thead className="table-dark">
                 <tr>
-                  <th>Reg No.</th>
+                  <th>UHID</th>
                   <th>Title</th>
                   <th>Patient Name</th>
                   <th>Patient Mobile</th>
