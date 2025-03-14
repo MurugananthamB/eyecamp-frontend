@@ -63,9 +63,9 @@ We welcome contributions from the community! 🚀
 
 ## 📬 Contact
 📧 **Email:** murugananthamanand01212@gmail.com  
-🔗 **Portfolio:** <a href="https://mrcreatorportfolio.netlify.app/" target="_blank">MurugananthamB</a>  
+🔗 **Portfolio:** <a href="https://mrcreatorportfolio.netlify.app/" target="_blank" rel="noopener noreferrer">MurugananthamB</a>  
 🔗 **LinkedIn:** <a href="https://www.linkedin.com/in/murugananthamb/" target="_blank">MurugananthamB</a>  
-📌 **GitHub:** <a href="https://github.com/MurugananthamB" target="_blank">MurugananthamB</a> 
+📌 **GitHub:** <a href="https://github.com/MurugananthamB" target="_blank">MurugananthamB</a>  
 
 ---
 
