@@ -330,14 +330,13 @@ const Surgery = () => {
                   <option value="Dr Manish">Dr Manish</option>
                   <option value="Dr Nivas">Dr Nivas</option>
                   <option value="Dr Padmaja">Dr Padmaja</option>
+                  <option value="Dr Padmaja">Dr Padmaja*</option>
                   <option value="Dr Padmapriya">Dr Padmapriya</option>
                   <option value="Dr Pavan">Dr Pavan</option>
                   <option value="Dr Prem Anand">Dr Prem Anand</option>
                   <option value="Dr Priya">Dr Priya</option>
                   <option value="Dr Pushpa">Dr Pushpa</option>
-                  <option value="Dr R. Santhanalakshmi">
-                    Dr R. Santhanalakshmi
-                  </option>
+                  <option value="Dr R. Santhanalakshmi">Dr R. Santhanalakshmi </option>
                   <option value="Dr Rajesh Kannan">Dr Rajesh Kannan</option>
                   <option value="Dr Ranganathan">Dr Ranganathan</option>
                   <option value="Dr Rathnakumar">Dr Rathnakumar</option>
@@ -349,6 +348,7 @@ const Surgery = () => {
                   </option>
                   <option value="Dr Shiva Ranjini">Dr Shiva Ranjini</option>
                   <option value="Dr Shivakumar">Dr Shivakumar</option>
+                  <option value="Dr Shivakumar">Dr Shivakumar*</option>
                   <option value="Dr Sree Lakshmi">Dr Sree Lakshmi</option>
                   <option value="Dr Srinivasan">Dr Srinivasan</option>
                   <option value="Dr Srividya">Dr Srividya</option>
