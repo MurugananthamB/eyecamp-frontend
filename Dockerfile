@@ -22,6 +22,9 @@ FROM nginx:stable-alpine
 # Copy built app to nginx's public folder
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Remove default nginx config (optional if you want custom config)
 # RUN rm /etc/nginx/conf.d/default.conf
 
