@@ -356,6 +356,9 @@ const Surgery = () => {
                   <option value="Dr Venkatesan Chellappa">
                     Dr Venkatesan Chellappa
                   </option>
+                  <option value="Dr Nivetha">Dr Nivetha</option>
+                  <option value="Dr Suruthi">Dr Suruthi</option>
+                  <option value="Dr Kalaimani">Dr Kalaimani</option>
                 </Form.Select>
               </Col>
             </Form.Group>

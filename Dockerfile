@@ -1,20 +1,38 @@
-# Stage 1: Build frontend with Node.js
-FROM node:18-alpine
+# Step 1: Build Stage
+FROM node:18-alpine AS build
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first to leverage Docker cache
-COPY package.json package-lock.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install -y
+RUN npm install --legacy-peer-deps
 
-# Copy the entire project
+# Copy the rest of the project files
 COPY . .
 
-# Build the frontend project
+# Build the Vite React app
 RUN npm run build
 
-EXPOSE 5173
-CMD ["npm", "run", "dev"]
+# Step 2: Production Stage
+FROM nginx:stable-alpine
+
+# Copy built app to nginx's public folder
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Remove default nginx config (optional if you want custom config)
+# RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy custom nginx config (optional)
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
