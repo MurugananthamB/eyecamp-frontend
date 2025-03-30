@@ -1,12 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Form, Button, Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FormContext } from "./formContext";
 import { FaRedo, FaSignOutAlt } from "react-icons/fa";
+import { getSurgeons } from "../api";
 
 const Surgery = () => {
   const navigate = useNavigate();
   const { formData, setFormData } = useContext(FormContext); // Use FormContext
+  const [surgeons, setSurgeons] = useState([]);
+
+  // ✅ Move API call inside useEffect
+  useEffect(() => {
+    getSurgeons()
+      .then((res) => setSurgeons(res.data))
+      .catch((err) => console.error("Error fetching surgeon list", err));
+  }, []);
 
   // Handle Input Change
   const handleChange = (e) => {
@@ -18,22 +27,21 @@ const Surgery = () => {
   const handleNext = (e) => {
     e.preventDefault();
     navigate("/editdischarge");
-    };
-    
-       const handleLogout = () => {
-         setFormData({}); // Clear form data
-         localStorage.clear(); // Clear all items in localStorage
-         navigate("/login"); // Redirect to the login page (or any other page)
-       };
+  };
 
-       const handleReprint = () => {
-         navigate("/reprintCard"); // Navigate to reprint card page
-       };
-    
-      const handleBack = () => {
-        navigate(-1); // Navigate to the previous page
-      };
-  
+  const handleLogout = () => {
+    setFormData({}); // Clear form data
+    localStorage.clear(); // Clear all items in localStorage
+    navigate("/login"); // Redirect to the login page (or any other page)
+  };
+
+  const handleReprint = () => {
+    navigate("/reprintCard"); // Navigate to reprint card page
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
 
   return (
     <div
@@ -302,7 +310,7 @@ const Surgery = () => {
               </Col>
             </Form.Group>
 
-            {/* Surgeon Name */}
+            {/* Surgeon Name (Dynamic) */}
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="3">
                 Surgeon Name
@@ -314,51 +322,11 @@ const Surgery = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Surgeon</option>
-                  <option value="Dr Venkatesan">Dr Venkatesan</option>
-                  <option value="Dr Sathish Kumar">Dr Sathish Kumar</option>
-                  <option value="Dr Malarvizhi">Dr Malarvizhi</option>
-                  <option value="Dr Nivas">Dr Nivas</option>
-                  <option value="Dr Subashree">Dr Subashree</option>
-                  <option value="Dr Arun Kumar">Dr Arun Kumar</option>
-                  <option value="Dr Ashwini">Dr Ashwini</option>
-                  <option value="Dr Balakrishnan">Dr Balakrishnan</option>
-                  <option value="Dr Elakkiya">Dr Elakkiya</option>
-                  <option value="Dr Gangadhar">Dr Gangadhar</option>
-                  <option value="Dr Gangadharan">Dr Gangadharan</option>
-                  <option value="Dr Kauser Parveen">Dr Kauser Parveen</option>
-                  <option value="Dr Malarchelvi">Dr Malarchelvi</option>
-                  <option value="Dr Manish">Dr Manish</option>
-                  <option value="Dr Nivas">Dr Nivas</option>
-                  <option value="Dr Padmaja">Dr Padmaja</option>
-                  <option value="Dr Padmapriya">Dr Padmapriya</option>
-                  <option value="Dr Pavan">Dr Pavan</option>
-                  <option value="Dr Prem Anand">Dr Prem Anand</option>
-                  <option value="Dr Priya">Dr Priya</option>
-                  <option value="Dr Pushpa">Dr Pushpa</option>
-                  <option value="Dr R. Santhanalakshmi">
-                    Dr R. Santhanalakshmi
-                  </option>
-                  <option value="Dr Rajesh Kannan">Dr Rajesh Kannan</option>
-                  <option value="Dr Ranganathan">Dr Ranganathan</option>
-                  <option value="Dr Rathnakumar">Dr Rathnakumar</option>
-                  <option value="Dr Rekha Sankar">Dr Rekha Sankar</option>
-                  <option value="Dr Senthil Kumar">Dr Senthil Kumar</option>
-                  <option value="Dr Shankar">Dr Shankar</option>
-                  <option value="Dr Shankar (Chettinad)">
-                    Dr Shankar (Chettinad)
-                  </option>
-                  <option value="Dr Shiva Ranjini">Dr Shiva Ranjini</option>
-                  <option value="Dr Shivakumar">Dr Shivakumar</option>
-                  <option value="Dr Sree Lakshmi">Dr Sree Lakshmi</option>
-                  <option value="Dr Srinivasan">Dr Srinivasan</option>
-                  <option value="Dr Srividya">Dr Srividya</option>
-                  <option value="Dr Subasree">Dr Subasree</option>
-                  <option value="Dr Venkatesan Chellappa">
-                    Dr Venkatesan Chellappa
-                  </option>
-                  <option value="Dr Nivetha">Dr Nivetha</option>
-                  <option value="Dr Suruthi">Dr Suruthi</option>
-                  <option value="Dr Kalaimani">Dr Kalaimani</option>
+                  {surgeons.map((name, idx) => (
+                    <option key={idx} value={name}>
+                      {name}
+                    </option>
+                  ))}
                 </Form.Select>
               </Col>
             </Form.Group>

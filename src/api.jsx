@@ -9,5 +9,8 @@ const api = axios.create({
   },
 });
 
+// ✅ Define getSurgeons API
+export const getSurgeons = () => api.get("/api/surgeon/get-surgeons");
+
 export default api;
 
