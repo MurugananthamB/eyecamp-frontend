@@ -10,6 +10,9 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import { FaPrint, FaTimes } from "react-icons/fa";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import { FaFileExcel } from "react-icons/fa"; // Excel icon
 import api from "../api";
 
 const PatientTable = () => {
@@ -233,12 +236,80 @@ const PatientTable = () => {
     printWindow.document.close();
   };
 
+  const exportToExcel = () => {
+    const dataToExport = filteredPatients.map((patient) => ({
+      UHID: patient.regNo,
+      Title: patient.title,
+      "Patient Name": patient.patientName,
+      "Patient Mobile": patient.mobile,
+      "Father/CO": patient.fatherOrCO,
+      "Attender Name": patient.attenderName,
+      "Attender Mobile": patient.attenderMobile,
+      Gender: patient.gender,
+      Age: patient.age,
+      District: patient.district,
+      Email: patient.email,
+      "Visual Right": patient.visualRight,
+      "Visual Left": patient.visualLeft,
+      "Procedure Name": patient.procedureName,
+      "Surgeon Name": patient.surgeonName,
+      "Date of Discharge": patient.dateOfDischarge
+        ? new Date(patient.dateOfDischarge).toLocaleDateString()
+        : "N/A",
+      Diagnosis: patient.diagnosis,
+      "Registration Date": patient.registrationDateTime
+        ? new Date(patient.registrationDateTime).toLocaleDateString()
+        : "N/A",
+      "OT Date": patient.otDateTime
+        ? new Date(patient.otDateTime).toLocaleDateString()
+        : "N/A",
+      "Surgery Date": patient.surgeryDate
+        ? new Date(patient.surgeryDate).toLocaleDateString()
+        : "N/A",
+      "Follow Place": patient.followPlace,
+      "Final Diagnosis": patient.finalDiagnosis,
+      Medications: Array.isArray(patient.medication)
+        ? patient.medication.join(", ")
+        : "N/A",
+      "First Visit": patient.firstVisit
+        ? new Date(patient.firstVisit).toLocaleDateString()
+        : "N/A",
+      "Second Visit": patient.secondVisit
+        ? new Date(patient.secondVisit).toLocaleDateString()
+        : "N/A",
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Patients");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const fileData = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
+    });
+
+    saveAs(fileData, "Patient_Data.xlsx");
+  };
+
   return (
     <div className="patient-table-container">
       <Container fluid className="p-4 patient-table-box">
         <h1 className="text-center mb-4">Patient Details</h1>
 
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-between mb-3">
+          <Button
+            className="fw-bold px-4 py-2 rounded-pill shadow-sm"
+            variant="success"
+            onClick={exportToExcel}
+          >
+            <FaFileExcel className="me-2" />
+            Export to Excel
+          </Button>
+
           <Button
             className="fw-bold px-4 py-2 rounded-pill shadow-sm"
             variant="warning"
